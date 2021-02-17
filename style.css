@@ -1,0 +1,68 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 200px;
+  padding: 10px;
+  border: 2px solid #7943A4;
+  border-radius: 10px;
+}
+
+.form__input {
+  margin: 10px auto;
+  width: 30px;
+  height: 20px;
+}
+
+.form__checkContainer {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.form__btn {
+  margin: 0 auto;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  background-color: #C283F3;
+  color: white;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.card {
+  margin-top: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  width: 40px;
+  height: 25px;
+  text-align: center;
+  font-size: 0px;
+  background-color: #D1A9F0;
+  cursor: pointer;
+}
+
+.card--is-active {
+  font-size: 22px;
+}
