@@ -66,3 +66,25 @@ ul {
 .card--is-active {
   font-size: 22px;
 }
+
+.field__timer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 100px;
+  font-size: 20px;
+}
+
+.field__btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  background-color: #C283F3;
+  cursor: pointer;
+  outline: none;
+}

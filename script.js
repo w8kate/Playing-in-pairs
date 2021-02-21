@@ -75,6 +75,20 @@
     }
   }
 
+  function createTimer() {
+    let timer = document.createElement('div');
+    timer.classList.add('field__timer');
+    timer.textContent = '60';
+    return timer;
+  }
+
+  function createButton() {
+    let button = document.createElement('button');
+    button.classList.add('field__btn');
+    button.textContent = 'Сыграть еще раз';
+    return button;
+  }
+
   function createApp()
   {
     const form = createForm();
@@ -88,6 +102,12 @@
       document.body.append(field.container);
 
       document.querySelector('.container').style.width = (counter(parseInt(form.input.value)) * 60) + 'px';
+
+      const timer = createTimer();
+
+      if (document.querySelector('.form__checkbox').checked) {
+        document.body.append(timer);
+      }
 
       document.querySelector('.form').remove();
 
@@ -120,6 +140,20 @@
                   if (pairArr[0]) if (newCardsArr[pairArr[0].index].label === true) pairArr.splice(0, 1);
                   if (pairArr[1]) if (newCardsArr[pairArr[1].index].label === true) pairArr.splice(1, 1);
                   if (pairArr[0] && pairArr[1]) pairArr.splice(1, 1);
+                }
+                let count = 0;
+                for (let i = 0; i < newCardsArr.length; i++) {
+                  if (newCardsArr[i].label === true) count++;
+                }
+                if (count === newCardsArr.length) {
+                  const button = createButton();
+                  document.body.append(button);
+                  document.querySelector('.field__btn').addEventListener('click', () => {
+                    document.querySelector('.container').remove();
+                    document.querySelector('.field__btn').remove();
+                    document.querySelector('.field__timer').remove();
+                    createApp();
+                  })
                 }
               }, 500);
             }
