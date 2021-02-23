@@ -78,7 +78,7 @@
   function createTimer() {
     let timer = document.createElement('div');
     timer.classList.add('field__timer');
-    timer.textContent = '60';
+    timer.textContent = '5';
     return timer;
   }
 
@@ -105,8 +105,15 @@
 
       const timer = createTimer();
 
+      let idTimer;
+
+      function timerCount() {
+        document.querySelector('.field__timer').textContent = parseInt(document.querySelector('.field__timer').textContent) - 1;
+      }
+
       if (document.querySelector('.form__checkbox').checked) {
         document.body.append(timer);
+        idTimer = setInterval(timerCount, 1000);
       }
 
       document.querySelector('.form').remove();
@@ -114,7 +121,6 @@
       let pairArr = [];
       let cardsArray = document.querySelectorAll('.card');
       let newCardsArr = [];
-      let time;
       for (let i = 0; i < cardsArray.length; i++) {
         newCardsArr.push({value: cardsArray[i], label: false});
       }
@@ -146,6 +152,7 @@
                   if (newCardsArr[i].label === true) count++;
                 }
                 if (count === newCardsArr.length) {
+                  clearInterval(idTimer);
                   const button = createButton();
                   document.body.append(button);
                   document.querySelector('.field__btn').addEventListener('click', () => {
