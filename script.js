@@ -63,12 +63,17 @@
     container.classList.add('container');
     container.style.width = toString(count * 50) + 'px';
 
+    let containerBlock = document.createElement('div');
+    containerBlock.classList.add('container-block');
+
     for (let i = 0; i < array.length; i++) {
       let card = document.createElement('li');
       card.classList.add('card');
       card.textContent = array[i];
       container.append(card);
     }
+
+    container.append(containerBlock);
 
     return {
       container
@@ -103,12 +108,36 @@
 
       document.querySelector('.container').style.width = (counter(parseInt(form.input.value)) * 60) + 'px';
 
+      let pairArr = [];
+      let cardsArray = document.querySelectorAll('.card');
+      let newCardsArr = [];
+      for (let i = 0; i < cardsArray.length; i++) {
+        newCardsArr.push({value: cardsArray[i], label: false});
+      }
+
       const timer = createTimer();
 
       let idTimer;
 
       function timerCount() {
         document.querySelector('.field__timer').textContent = parseInt(document.querySelector('.field__timer').textContent) - 1;
+        if (parseInt(document.querySelector('.field__timer').textContent) === 0) {
+          clearInterval(idTimer);
+          for (let i = 0; i < cardsArray.length; i++) {
+            if (newCardsArr[i].label === false) {
+              cardsArray[i].classList.add('card--none');
+            }
+          }
+          document.querySelector('.container-block').classList.add('container-block--is-active');
+          const button = createButton();
+          document.body.append(button);
+          document.querySelector('.field__btn').addEventListener('click', () => {
+            document.querySelector('.container').remove();
+            document.querySelector('.field__btn').remove();
+            document.querySelector('.field__timer').remove();
+            createApp();
+          })
+        }
       }
 
       if (document.querySelector('.form__checkbox').checked) {
@@ -118,12 +147,6 @@
 
       document.querySelector('.form').remove();
 
-      let pairArr = [];
-      let cardsArray = document.querySelectorAll('.card');
-      let newCardsArr = [];
-      for (let i = 0; i < cardsArray.length; i++) {
-        newCardsArr.push({value: cardsArray[i], label: false});
-      }
       for (let i = 0; i < cardsArray.length; i++) {
         cardsArray[i].addEventListener('click', () => {
           if (pairArr.length < 2) {
@@ -153,12 +176,15 @@
                 }
                 if (count === newCardsArr.length) {
                   clearInterval(idTimer);
+                  document.querySelector('.container-block').classList.add('container-block--is-active');
                   const button = createButton();
                   document.body.append(button);
                   document.querySelector('.field__btn').addEventListener('click', () => {
                     document.querySelector('.container').remove();
                     document.querySelector('.field__btn').remove();
-                    document.querySelector('.field__timer').remove();
+                    if (document.querySelector('.field__timer')) {
+                      document.querySelector('.field__timer').remove();
+                    }
                     createApp();
                   })
                 }

@@ -43,6 +43,7 @@ ul {
 }
 
 .container {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -87,4 +88,22 @@ ul {
   background-color: #C283F3;
   cursor: pointer;
   outline: none;
+}
+
+.container-block {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.container-block--is-active {
+  display: block;
+}
+
+.card--none {
+  font-size: 0px;
 }
