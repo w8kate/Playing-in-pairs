@@ -83,7 +83,7 @@
   function createTimer() {
     let timer = document.createElement('div');
     timer.classList.add('field__timer');
-    timer.textContent = '5';
+    timer.textContent = '60';
     return timer;
   }
 
